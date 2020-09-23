@@ -1,5 +1,3 @@
-import { SrvRecord } from 'dns';
-
 export class Satellite {
     name: string;
     type: string;
