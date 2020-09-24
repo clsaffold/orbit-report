@@ -8,10 +8,9 @@ import { Satellite } from './satellite';
 })
 export class AppComponent {
   title = 'orbit-report';
-  sourceList = Satellite[];
-  displayList = Satellite [];
-  satelliteType;
-
+  sourceList: Satellite[];
+  displayList: Satellite [];
+  satelliteType
   constructor() {
     this.sourceList = [];
     const satellitesUrl = 'https://handlers.education.launchcode.org/static/satellites.json';
@@ -27,26 +26,23 @@ export class AppComponent {
     ]
 
     window.fetch(satellitesUrl).then(function(response) {
-       response.json().then(function(data) {
+      response.json().then(function (data) {
  
-          let fetchedSatellites = data.satellites;
-          for (let i = 0; i < fetchedSatellites.length; i++) {
-            let satelliteList = new Satellite(fetchedSatellites[i].name, fetchedSatellites[i].type, fetchedSatellites[i].launchDate, fetchedSatellites[i].orbitType, fetchedSatellites.[i].operational);
-            this.sourceList.push(satelliteList);
-            this.displayList = this.sourceList.slice(0);
+        const fetchedSatellites = data.satellites;
+        for (let i = 0; i < fetchedSatellites.length; i++) {
+          const satelliteList = new Satellite(fetchedSatellites[i].name, fetchedSatellites[i].type, fetchedSatellites[i].launchDate, fetchedSatellites[i].orbitType, fetchedSatellites[i].operational);
+          this.sourceList.push(satelliteList);
+          this.displayList = this.sourceList.slice(0);
 
-            for(const info of this.satelliteType) {
-              if (info.typeName === satelliteList.type) {
-                info.count++
-                this.satelliteType[0].count++
-              }
+          for(const info of this.satelliteType) {
+            if (info.typeName === satelliteList.type) {
+              info.count++
+              this.satelliteType[0].count++
             }
           }
-          // TODO: loop over satellites
-          // TODO: create a Satellite object using new Satellite(fetchedSatellites[i].name, fetchedSatellites[i].type, fetchedSatellites[i].launchDate, fetchedSatellites[i].orbitType, fetchedSatellites[i].operational);
-          // TODO: add the new Satellite object to sourceList using: this.sourceList.push(satellite);
+        }
  
-       }.bind(this));
+      }.bind(this));
     }.bind(this));
  
   }
@@ -63,8 +59,8 @@ export class AppComponent {
       if (type.indexOf(searchType) >= 0 && !matchingSatellites.includes(satellite)) {
         matchingSatellites.push(satellite)
       }
-      const orbittType = satellite.orbittType.toLowerCase()
-      if (orbittType.indexOf(searchType) >= 0 && !matchingSatellites.includes(satellite)) {
+      const orbitType = satellite.orbitType.toLowerCase()
+      if (orbitType.indexOf(searchType) >= 0 && !matchingSatellites.includes(satellite)) {
         matchingSatellites.push(satellite)
       }
       
@@ -90,7 +86,7 @@ export class AppComponent {
       }
     }
   }
-}
+};
 
 
 

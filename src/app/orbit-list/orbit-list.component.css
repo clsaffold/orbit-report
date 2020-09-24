@@ -1,10 +1,13 @@
 .sortable {
     cursor: pointer;
-    color: #dd5;
+    color: #f2ba1f;
 }
 
 .warning {
-    background-color: #ff0a0a;
+    background-color: #EB4425;
+    background-blend-mode: darken;
+    color: white;
+    font-style: italic;
 }
 
 table {
@@ -17,7 +20,7 @@ table {
 }
 
 .header-row {
-    background: #34495E;
+    background: #157D72;
     color: #fff
 }
 
