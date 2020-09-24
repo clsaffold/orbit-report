@@ -9,9 +9,9 @@
     </tr>
     <tr *ngFor ="let satellite of satellites">
         <td>{{satellite.name}}</td>
-        <td>{{satellite.n}}</td>
-        <td>{{satellite.name}}</td>
-        <td>{{satellite.name}}</td>
-        <td>{{satellite.name}}</td>
+        <td [class.warning]="satellite.shouldShowWarning()"> {{ satellites.type }} </td>
+        <td>{{satellite.operational}}</td>
+        <td>{{satellite.orbitType}}</td>
+        <td>{{satellite.launchDate}}</td>
     </tr>
 </table>
