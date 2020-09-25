@@ -48,43 +48,35 @@ export class AppComponent {
   }
 
   search(searchTerm: string): void {
-    const matchingSatellites: Satellite[] = [];
-    const searchType = searchTerm.toLowerCase();
-    for (const satellite of this.sourceList) {
-      const name = satellite.name.toLowerCase()
-      if (name.indexOf(searchType) >= 0) {
-        matchingSatellites.push(satellite)
-      }
-      const type = satellite.type.toLowerCase()
-      if (type.indexOf(searchType) >= 0 && !matchingSatellites.includes(satellite)) {
-        matchingSatellites.push(satellite)
-      }
-      const orbitType = satellite.orbitType.toLowerCase()
-      if (orbitType.indexOf(searchType) >= 0 && !matchingSatellites.includes(satellite)) {
-        matchingSatellites.push(satellite)
-      }
-      
+    let matchingSatellites: Satellite[] = [];
+    searchTerm = searchTerm.toLowerCase();
+    for(let i=0; i < this.sourceList.length; i++) {
+       let name = this.sourceList[i].name.toLowerCase();
+       if (name.indexOf(searchTerm) >= 0) {
+          matchingSatellites.push(this.sourceList[i]);
+       }
     }
     this.displayList = matchingSatellites;
 
-    this.satelliteType = [
-      { typeName: 'Total', count: 0 },
-      { typeName: 'Space Debris', count: 0 },
-      { typeName: 'Communication', count: 0 },
-      { typeName: 'Probe', count: 0 },
-      { typeName: 'Positioning', count: 0 },
-      { typeName: 'Space Station', count: 0 },
-      { typeName: 'Telescope', count: 0 },
-    ]
+//  Did not complete Satellite Counts Bonus Mission - For later self study:
+//     this.satelliteType = [
+//       { typeName: 'Total', count: 0 },
+//       { typeName: 'Space Debris', count: 0 },
+//       { typeName: 'Communication', count: 0 },
+//       { typeName: 'Probe', count: 0 },
+//       { typeName: 'Positioning', count: 0 },
+//       { typeName: 'Space Station', count: 0 },
+//       { typeName: 'Telescope', count: 0 },
+//     ]
 
-    for (const satellite of this.displayList) {
-      for (const info of this.satelliteType) {
-        if (info.typeName === satellite.type) {
-          info.count++
-          this.satelliteType[0].count++
-        }
-      }
-    }
+//     for (const satellite of this.displayList) {
+//       for (const info of this.satelliteType) {
+//         if (info.typeName === satellite.type) {
+//           info.count++
+//           this.satelliteType[0].count++
+//         }
+//       }
+//     }
   }
 };
 
